@@ -19,7 +19,7 @@ session_start();
 var_dump($_POST);
 var_dump($_COOKIE);
 
-// require_once('menu.html');
+require_once('nav.php');
 
 $emailError = $passwordError = '';
 $filled = true;
