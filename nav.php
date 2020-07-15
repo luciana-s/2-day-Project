@@ -20,22 +20,32 @@ var_dump($_SESSION);
 
     <?php
 
+    if (isset($_POST['logout'])) {
 
-    if ($_SESSION['login']) {
-        echo 'Logged In : ' . $_SESSION['sessUser'] . '<br>';
-    } else {
-        // https://my.bluehost.com/hosting/help/241
-        header("Location: http://localhost/PHP/PHPSpotify/login.php");
-        // header("Location: login.php");
+        $_SESSION['login'] = false;
+        echo 'Bye Bye Birdie<br>';
+        var_dump($_SESSION);
+        var_dump($_COOKIE);
     }
 
 
     ?>
 
     <?php if ($_SESSION['login']) : ?>
-        <div>Song : <strong><?= $playlist['Title'] ?></strong></div>
+        <div>
+            <input type="submit" name="logout" value="Log Out">
+        </div>
     <?php else : ?>
-        <div>Song : <strong><?= $playlist['Title'] ?></strong></div>
+        <div>
+            <a href="register.php">
+                <input type="button" name="register" value="Register">
+            </a>
+        </div>
+        <div>
+            <a href="login.php">
+                <input type="button" name="login" value="Log In">
+            </a>
+        </div>
     <?php endif; ?>
 
 </nav>
