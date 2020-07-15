@@ -36,9 +36,10 @@
             <a href="playlists.php">| Playlists | </a><br>
         </nav>
 
-        <div>
-            <input type="text" id="search" placeholder="Search for a movie...">
-        </div>
+        <form action="" method="post">
+            <input type="text" name="mysearch1" placeholder="Search for a movie...">
+            <input type="submit" name="search1" value="find movies">
+        </form>
 
         <?php if ($_SESSION['login']) : ?>
             <form id="userstat" action="" method="post">
@@ -53,3 +54,34 @@
             </div>
         <?php endif; ?>
     </header>
+
+    <p>
+        <?php
+
+        if (isset($_POST['search1'])) {
+            // clean the string
+            $searchTitle = trim($_POST['mysearch1']);
+
+            // open a connection to DB
+            $conn = mysqli_connect('localhost', 'root', '', 'project_movie');
+
+            $query = "SELECT * FROM movies WHERE title LIKE '%$searchTitle%'";
+
+            // send SQL request to DB
+            $result_query = mysqli_query($conn, $query);
+
+            $foundmovies = mysqli_fetch_all($result_query, MYSQLI_ASSOC);
+            // var_dump($foundmovies);
+
+
+            foreach ($foundmovies as $key => $value) {
+                echo '<img src="imgs/' . $value['poster'] . '" width="150px" alt=""><br>';
+                echo $value['title'] . '<br>';
+            }
+
+            // CLOSE the resource/connection
+            mysqli_close($conn);
+        }
+
+        ?>
+    </p>
