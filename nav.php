@@ -10,17 +10,31 @@
 
     ?>
 
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        nav {
+            display: flex;
+        }
+    </style>
+
     <!--  Home, Songs, Artists, Playlists and Register / Login -->
-    <nav>
-        <a href="index.php">Home | </a><br>
-        <a href="">| Movies Catalogue | </a><br>
-        <a href="">| Manage Catagories | </a><br>
-        <a href="">| Add a Movie | </a><br>
-        <a href="playlists.php">| Playlists | </a><br>
+    <header>
+        <nav>
+            <a href="index.php">| Home | </a><br>
+            <a href="">| Movies Catalogue | </a><br>
+            <a href="">| Manage Catagories | </a><br>
+            <a href="">| Add a Movie | </a><br>
+            <a href="playlists.php">| Playlists | </a><br>
+        </nav>
 
-
-        <input type="text" id="search" placeholder="Search for a movie...">
-
+        <div>
+            <input type="text" id="search" placeholder="Search for a movie...">
+        </div>
 
         <?php if ($_SESSION['login']) : ?>
             <form action="" method="post">
@@ -28,13 +42,8 @@
             </form>
         <?php else : ?>
             <div>
-                <a href="register.php">| Register | </a><br>
-            </div>
-            <div>
-                <a href="login.php">
-                    <a href="login.php">| Log In</a><br>
-                </a>
+                <a href="register.php">| Register | </a>
+                <a href="login.php">| Log In |</a>
             </div>
         <?php endif; ?>
-
-    </nav>
+    </header>

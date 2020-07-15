@@ -16,10 +16,10 @@ displayed next to the login button.
 // best to start session at the very beginning
 // calls an existing session if it exists otherwise creates one
 session_start();
-var_dump($_POST);
-var_dump($_COOKIE);
+// var_dump($_POST);
+// var_dump($_COOKIE);
 
-require_once('nav.php');
+
 
 $emailError = $passwordError = '';
 $filled = true;
@@ -74,8 +74,8 @@ if (isset($_POST['submitLog'])) {
             if ($countUser > 0) {
                 if (password_verify($passIn, $userInfo['password'])) {
 
-                    var_dump($_SESSION);
-                    var_dump($_COOKIE);
+                    // var_dump($_SESSION);
+                    // var_dump($_COOKIE);
 
                     $_SESSION['sessUser'] = $userInfo['firstname'];
                     $_SESSION['login'] = true;
@@ -83,8 +83,8 @@ if (isset($_POST['submitLog'])) {
                     $_SESSION['email'] = $userInfo['email'];
 
                     echo 'Welcome back user : ' . $_SESSION['sessUser'] . '<br>';
-                    var_dump($_SESSION);
-                    var_dump($_COOKIE);
+                    // var_dump($_SESSION);
+                    // var_dump($_COOKIE);
                 } else {
                     echo 'Wrong Password';
                 }
@@ -104,8 +104,8 @@ if (isset($_POST['logout'])) {
 
     $_SESSION['login'] = false;
     echo 'Bye Bye Birdie<br>';
-    var_dump($_SESSION);
-    var_dump($_COOKIE);
+    // var_dump($_SESSION);
+    // var_dump($_COOKIE);
 }
 
 ?>
@@ -121,6 +121,10 @@ if (isset($_POST['logout'])) {
 
 <body>
 
+    <?php
+
+    require_once('nav.php');
+    ?>
     <!-- Login page
     A form asks for the username (email) and password. A "Register" button is displayed, which
     takes you to the registration page. A link to the forgotten password page will also be
