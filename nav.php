@@ -3,7 +3,7 @@
     if (isset($_POST['logout'])) {
 
         $_SESSION['login'] = false;
-        echo 'Bye Bye Birdie<br>';
+
         // var_dump($_SESSION);
         // var_dump($_COOKIE);
     }
@@ -19,6 +19,10 @@
 
         nav {
             display: flex;
+        }
+
+        #userstat {
+            text-align: right;
         }
     </style>
 
@@ -37,12 +41,14 @@
         </div>
 
         <?php if ($_SESSION['login']) : ?>
-            <form action="" method="post">
-                <input type="submit" name="logout" value="Log Out">
+            <form id="userstat" action="" method="post">
+                <input type="submit" name="logout" value="Log Out"><br>
+                <div>Logged In User: <?= $_SESSION['sessUser'] ?></div>
+                <div>User email: <?= $_SESSION['email'] ?></div>
             </form>
         <?php else : ?>
             <div>
-                <a href="register.php">| Register | </a>
+                <a href="register.php">| Register |</a>
                 <a href="login.php">| Log In |</a>
             </div>
         <?php endif; ?>

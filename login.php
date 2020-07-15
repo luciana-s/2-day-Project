@@ -57,7 +57,7 @@ if (isset($_POST['submitLog'])) {
         mysqli_select_db($conn, 'project_movie');
 
         if ($conn) {
-            echo 'Connected.... verifying...<br>';
+            // echo 'Connected....';
 
             // PREPARE my query
             $logquery = "SELECT * 
@@ -82,7 +82,7 @@ if (isset($_POST['submitLog'])) {
                     $_SESSION['userID'] = $userInfo['user_id'];
                     $_SESSION['email'] = $userInfo['email'];
 
-                    echo 'Welcome back user : ' . $_SESSION['sessUser'] . '<br>';
+                    // echo 'Welcome back user : ' . $_SESSION['sessUser'] . '<br>';
                     // var_dump($_SESSION);
                     // var_dump($_COOKIE);
                 } else {
@@ -103,7 +103,7 @@ if (isset($_POST['submitLog'])) {
 if (isset($_POST['logout'])) {
 
     $_SESSION['login'] = false;
-    echo 'Bye Bye Birdie<br>';
+    // echo 'Bye Bye Birdie<br>';
     // var_dump($_SESSION);
     // var_dump($_COOKIE);
 }
