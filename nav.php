@@ -1,10 +1,3 @@
-<?php
-
-session_start();
-var_dump($_SESSION);
-
-?>
-
 <!--  Home, Songs, Artists, Playlists and Register / Login -->
 <nav>
     <a href="index.php">Home | </a><br>
