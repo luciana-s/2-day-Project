@@ -19,34 +19,33 @@ session_start();
 var_dump($_POST);
 var_dump($_COOKIE);
 
-require_once('menu.html');
+// require_once('menu.html');
 
-$firstnameError = $lastnameError = $passwordError = '';
+$emailError = $passwordError = '';
 $filled = true;
 
 
 if (isset($_POST['submitLog'])) {
 
-    $firstIn = $_POST['firstname'];
-    $lastIn = $_POST['lastname'];
-    // hash the password before saving in database using 'password_hash()'. 
+    $emailIn = $_POST['email'];
     $passIn = $_POST['pass'];
 
-    if (empty($firstIn)) {
-        $firstnameError = 'please enter First name';
+    if (empty($emailIn)) {
+        $emailError = 'please enter email';
         $filled = false;
-    }
-
-    if (empty($lastIn)) {
-        $lastnameError = 'please enter Last name';
-        $filled = false;
+    } else {
+        //todo BEST PRACTICE = EMAIL :
+        // first sanitise the email: filter_var($mailIn,FILTER_SANITIZE_EMAIL)
+        $sanitiseMail = filter_var($emailIn, FILTER_SANITIZE_EMAIL);
+        // THEN validate the email
+        // Return Value: It returns the filtered data on success, or FALSE on failure.
+        // https://www.geeksforgeeks.org/php-filter_var-function/
+        $sanitiseMail = filter_var($sanitiseMail, FILTER_VALIDATE_EMAIL);
     }
 
     if (empty($passIn)) {
         $passwordError = 'please enter Password';
         $filled = false;
-    } else {
-        # code...
     }
 
     if ($filled) {
@@ -55,16 +54,16 @@ if (isset($_POST['submitLog'])) {
         $conn = mysqli_connect('localhost', 'root', '');
 
         // Choose which database I want to work on
-        mysqli_select_db($conn, 'spotifydb');
+        mysqli_select_db($conn, 'project_movie');
 
         if ($conn) {
             echo 'Connected.... verifying...<br>';
 
             // PREPARE my query
-            $logquery = 'SELECT * 
+            $logquery = "SELECT * 
             FROM users
-            WHERE first_name = "' . $firstIn . '" AND last_name = "' . $lastIn . '"
-            ';
+            WHERE email = '$sanitiseMail'
+            ";
 
             // SEND query to the DB
             $logresults = mysqli_query($conn, $logquery);
@@ -75,19 +74,13 @@ if (isset($_POST['submitLog'])) {
             if ($countUser > 0) {
                 if (password_verify($passIn, $userInfo['password'])) {
 
-                    /* if (!empty($userInfo['PHPSESSID'])) {
-                        // if it is available, assign the sessID unique to the user that is saved on the DB 
-                        // to the local cookie sessID
-                        $_COOKIE['PHPSESSID'] = $userInfo['PHPSESSID'];
-                    } */
-
                     var_dump($_SESSION);
                     var_dump($_COOKIE);
 
-                    $_SESSION['sessUser'] = $userInfo['first_name'];
+                    $_SESSION['sessUser'] = $userInfo['firstname'];
                     $_SESSION['login'] = true;
                     $_SESSION['userID'] = $userInfo['user_id'];
-                    $_SESSION['mail'] = $userInfo['mail'];
+                    $_SESSION['email'] = $userInfo['email'];
 
                     echo 'Welcome back user : ' . $_SESSION['sessUser'] . '<br>';
                     var_dump($_SESSION);
@@ -134,7 +127,7 @@ if (isset($_POST['logout'])) {
     displayed next to the login button. -->
 
     <form action="" method="post">
-        <input type="email" name="email" id="">
+        <input type="email" name="email" id="">* <?= $emailError ?><br>
 
         <input type="password" name="pass" placeholder="Enter passWord" id="">* <?= $passwordError ?><br>
         <input type="submit" name="submitLog" value="Lhog hIn"><br><br>
