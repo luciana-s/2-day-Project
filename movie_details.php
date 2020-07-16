@@ -1,4 +1,5 @@
 <?php
+require_once 'nav.php';
 $connection = mysqli_connect('localhost', 'root', '', 'project_movie');
 if ($connection) {
     if (isset($_GET['id'])) {
