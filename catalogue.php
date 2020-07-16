@@ -35,6 +35,8 @@
     <script>
         //getting the array
         $(function() {
+            const model = document.querySelector('#mock');
+            const container = document.getElementById('container');
             $.ajax({
                 url: 'datamovies.php',
                 type: 'post',
@@ -51,9 +53,7 @@
                     },
                     success: function(res) {
                         console.log('success');
-                        const model = document.querySelector('#mock');
-                        const container = document.querySelector('div');
-                        container.remove();
+                        $('#container').remove();
                         model.style.display = '';
                         createArticles(res);
                     },
@@ -71,9 +71,7 @@
                     },
                     success: function(res) {
                         console.log('success');
-                        const model = document.querySelector('#mock');
-                        const container = document.querySelector('div');
-                        container.remove();
+                        $('#container').remove();
                         model.style.display = '';
                         createArticles(res);
                     },
@@ -91,9 +89,7 @@
                     },
                     success: function(res) {
                         console.log('success');
-                        const model = document.querySelector('#mock');
-                        const container = document.querySelector('div');
-                        container.remove();
+                        $('#container').remove();
                         model.style.display = '';
                         createArticles(res);
                     },
@@ -102,39 +98,41 @@
                     }
                 })
             })
+
+            function createArticles(movies) {
+                //cloning and making new movie displays
+                movies = jQuery.parseJSON(movies);
+                const section = document.querySelector('#movies');
+                const container = document.createElement('div');
+                container.id = 'container';
+                const model = document.querySelector('#mock');
+                section.append(container);
+                console.log(movies);
+                movies.forEach(movie => {
+                    //- Duplicate a mockup <article> tag to the <section>
+                    const cloneHTML = model.cloneNode(true);
+                    container.append(cloneHTML)
+                    //- Adding the cat_id as a class for ordering later
+                    cloneHTML.classList.add(movie.cat_id);
+                    //- title
+                    cloneHTML.querySelector('.title').textContent = movie.title;
+                    //Movie id
+                    cloneHTML.querySelector('.id').textContent = '#' + movie.movie_id + ' ';
+                    //Sinopsis
+                    cloneHTML.querySelector('.sinopsis').textContent = movie.sinopsis;
+                    //- modify the <a> to the GET movie id
+                    cloneHTML.querySelector('.more').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
+                    //- modify the <a> "read more" link (<a>) pointing to the GET movie id
+                    cloneHTML.querySelector('.modify').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
+                    //img src
+                    cloneHTML.querySelector('img').src = 'imgs/' + movie.poster;
+                    // taking out the mock id
+                    cloneHTML.id = "";
+                });
+                model.style.display = 'none';
+            }
         });
 
-        function createArticles(movies) {
-            //cloning and making new movie displays
-            movies = jQuery.parseJSON(movies);
-            const section = document.querySelector('#movies');
-            const container = document.createElement('div');
-            const model = document.querySelector('#mock');
-            section.append(container);
-            console.log(movies);
-            movies.forEach(movie => {
-                //- Duplicate a mockup <article> tag to the <section>
-                const cloneHTML = model.cloneNode(true);
-                container.append(cloneHTML)
-                //- Adding the cat_id as a class for ordering later
-                cloneHTML.classList.add(movie.cat_id);
-                //- title
-                cloneHTML.querySelector('.title').textContent = movie.title;
-                //Movie id
-                cloneHTML.querySelector('.id').textContent = '#' + movie.movie_id + ' ';
-                //Sinopsis
-                cloneHTML.querySelector('.sinopsis').textContent = movie.sinopsis;
-                //- modify the <a> to the GET movie id
-                cloneHTML.querySelector('.more').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
-                //- modify the <a> "read more" link (<a>) pointing to the GET movie id
-                cloneHTML.querySelector('.modify').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
-                //img src
-                cloneHTML.querySelector('img').src = 'imgs/' + movie.poster;
-                // taking out the mock id
-                cloneHTML.id = "";
-            });
-            model.style.display = 'none';
-        }
         /* 
                 function createArticles(movies) {
                     //cloning and making new movie displays
