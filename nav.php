@@ -60,12 +60,14 @@
                 $foundmovies = mysqli_fetch_all($result_query, MYSQLI_ASSOC);
                 // var_dump($foundmovies);
 
-
+                echo '<div id="search1Result">';
                 foreach ($foundmovies as $key => $value) {
+                    echo '<div>';
                     echo '<img src="imgs/' . $value['poster'] . '" width="150px" alt=""><br>';
                     echo $value['title'] . '<br>';
+                    echo '</div>';
                 }
-
+                echo '</div>';
                 // CLOSE the resource/connection
                 mysqli_close($conn);
             }

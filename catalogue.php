@@ -26,7 +26,7 @@
                 <p class="sinopsis"></p>
             </div>
             <div class="links">
-                <a href="" class="more">...See more</a>
+                <a href="" class="more">Details</a>
                 <a href="" class="modify">Modify</a>
             </div>
         </article>

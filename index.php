@@ -22,7 +22,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -124,13 +124,17 @@ session_start();
     <hr>
 
     <!-- print the home movies -->
-    <?php foreach ($homemovies as $homemovie) : ?>
-        <img src="imgs/<?= $homemovie['poster'] ?>" width="250px" alt="">
-        <p>Title : <strong><?= $homemovie['title'] ?></strong></p>
-        <p>Release : <?= substr($homemovie['year_of_release'], 0, 4) ?></p>
-        <!-- 5. Make the title of each movie clickable - redirect to the related descriptive movie page. -->
-        <p><a href="http://localhost/PHP/PHPday6exDB/movie.php?id=<?= $homemovie['movie_id'] ?>">See More...?</a></p>
-    <?php endforeach; ?>
+    <section id="indexSection">
+        <?php foreach ($homemovies as $homemovie) : ?>
+            <div class="shownMoviesIndex">
+                <img src="imgs/<?= $homemovie['poster'] ?>" alt="">
+                <p>Title : <strong><?= $homemovie['title'] ?></strong></p>
+                <p>Release : <?= substr($homemovie['year_of_release'], 0, 4) ?></p>
+                <!-- 5. Make the title of each movie clickable - redirect to the related descriptive movie page. -->
+                <p><a href="http://localhost/Project/2-day-Project/movie_details.php?id=<?= $homemovie['movie_id'] ?>">See More...?</a></p>
+            </div>
+        <?php endforeach; ?>
+    </section>
 
 
     <!-- https://code.jquery.com/ -->

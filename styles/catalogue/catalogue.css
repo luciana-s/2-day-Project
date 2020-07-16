@@ -1,8 +1,3 @@
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 *:not(input) {
   margin: 0;
   padding: 0;
@@ -35,6 +30,11 @@ section article {
           align-items: center;
 }
 
+section article p {
+  width: 80%;
+  margin: 0 1rem;
+}
+
 section article img {
   width: 150px;
   padding-right: 1rem;
@@ -54,6 +54,7 @@ section article .id_and_title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 2rem;
 }
 
 section article .id_and_title .id {
@@ -68,16 +69,20 @@ section article .links {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 20%;
+  text-align: center;
+}
+
+section article .links a {
+  padding: 0.5rem;
+  background-color: #f2d0a4;
+  color: #730010;
+  text-decoration: none;
+  border-radius: 10px;
 }
 
 section article .links .more {
-  color: cornflowerblue;
-  padding-bottom: 1rem;
-  text-decoration: none;
-}
-
-section article .links .modify {
-  color: cornflowerblue;
+  margin-bottom: 1rem;
   text-decoration: none;
 }
 /*# sourceMappingURL=catalogue.css.map */

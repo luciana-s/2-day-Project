@@ -1,3 +1,7 @@
+//general css
+* {
+  box-sizing: border-box;
+}
 body {
   background-image: linear-gradient(#200005, #730010);
   color: #f2d0a4;
@@ -6,6 +10,7 @@ body {
     text-decoration: none;
   }
 }
+//nav css
 header {
   background-color: #f2d0a4;
   display: flex;
@@ -22,11 +27,11 @@ header {
     padding: 0.5rem;
     font-weight: bold;
   }
-}
-a:hover {
-  background-color: #730010;
-  color: #f2d0a4;
-  border-radius: 10px;
+  a:hover {
+    background-color: #730010;
+    color: #f2d0a4;
+    border-radius: 10px;
+  }
 }
 #userstat {
   text-align: right;
@@ -43,5 +48,45 @@ a:hover {
   }
   ::placeholder {
     color: #f2d0a4;
+  }
+}
+#search1Result {
+  display: flex;
+  div {
+    margin: 1rem;
+  }
+}
+//index css
+#indexSection {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  a {
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+  a:hover {
+    background-color: #f2d0a4;
+    color: #730010;
+    border-radius: 10px;
+  }
+  .shownMoviesIndex {
+    margin: 0.5rem;
+    background: #730010 0% 0% no-repeat padding-box;
+    border-radius: 18px;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    img {
+      width: 300px;
+      height: 80%;
+    }
+  }
+}
+#order {
+  button {
+    padding: 0.5rem;
+    background-color: #f2d0a4;
+    border-radius: 10px;
   }
 }

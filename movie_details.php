@@ -8,7 +8,7 @@ if ($connection) {
             FROM movies m
             INNER JOIN categories c
             ON c.cat_id = m.cat_id
-            WHERE movie_id = 1";
+            WHERE movie_id = $urlID";
         $resultURL = mysqli_query($connection, $queryURL);
     } else {
         header('Location: http://localhost/Project/2-day-Project/catalogue.php');
