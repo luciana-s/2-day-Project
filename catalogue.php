@@ -121,9 +121,9 @@
                     //Sinopsis
                     cloneHTML.querySelector('.sinopsis').textContent = movie.sinopsis;
                     //- modify the <a> to the GET movie id
-                    cloneHTML.querySelector('.more').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
+                    cloneHTML.querySelector('.more').href = 'http://localhost/Project/2-day-Project/movie_details.php?id=' + movie.movie_id;
                     //- modify the <a> "read more" link (<a>) pointing to the GET movie id
-                    cloneHTML.querySelector('.modify').href = 'http://localhost/Project/2-day-Project/catalogue.php?id=' + movie.movie_id;
+                    cloneHTML.querySelector('.modify').href = 'http://localhost/Project/2-day-Project/modify_movie.php?id=' + movie.movie_id;
                     //img src
                     cloneHTML.querySelector('img').src = 'imgs/' + movie.poster;
                     // taking out the mock id
@@ -132,34 +132,6 @@
                 model.style.display = 'none';
             }
         });
-
-        /* 
-                function createArticles(movies) {
-                    //cloning and making new movie displays
-                    movies = jQuery.parseJSON(movies);
-                    const section = document.querySelector('#movies');
-                    const container = document.createElement('div').id = 'container';
-                    for (movie of movies) {
-                        // create the article
-                        const articleHTML = document.createElement('article');
-                        container.append(articleHTML);
-                        //adding category as class
-                        articleHTML.classList.add(movie.cat_id);
-                        // create the heading
-                        const headingHTML = document.createElement('h2');
-                        articleHTML.append(headingHTML);
-                        // create the paragraph
-                        const paraHTML = document.createElement('p');
-                        articleHTML.append(paraHTML);
-                        // modify the article
-                        articleHTML.classList.add(articleData.category);
-                        // modify the heading
-                        headingHTML.textContent = articleData.title
-                        // modify the paragraph
-                        paraHTML.textContent = articleData.content;
-                    }
-
-                } */
     </script>
 </body>
 
