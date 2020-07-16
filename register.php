@@ -1,4 +1,5 @@
 <?php
+require_once 'nav.php';
 $connection = mysqli_connect('localhost', 'root', '', 'project_movie');
 //initializing variables
 $emailError = $emailError2 = $passwordError = $pwConfirmError = $firstnameError = $lastnameError = '';
@@ -57,7 +58,8 @@ if ($connection) {
             VALUES ( '$firstname','$lastname', '$email','$hashedPassword','$sessionID')";
             $result = mysqli_query($connection, $query);
             $_SESSION['login'] = true;
-
+            $_SESSION['sessUser'] = $firstname;
+            $_SESSION['email'] = $email;
             //go to home page after registration is succesful
             header('Location: index.php');
         }
