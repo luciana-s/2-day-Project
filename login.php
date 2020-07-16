@@ -122,7 +122,6 @@ if (isset($_POST['logout'])) {
 <body>
 
     <?php
-
     require_once('nav.php');
     ?>
     <!-- Login page
