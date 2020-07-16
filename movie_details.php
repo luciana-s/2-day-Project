@@ -21,12 +21,12 @@ if ($connection) {
 </head>
 
 <body>
-    <?php while ($bd_record = mysqli_fetch_assoc($resultURL)) : ?>
-        <img src="imgs/<?= $bd_record['poster'] ?>" alt="">
-        <h2><?= $bd_record['title'] ?></h2>
-        <p><?= $bd_record['sinopsis'] ?></p>
-        <a href="http://localhost/Project/2-day-Project/modify_movie.php?id= <?php $bd_record['movie_id'] ?>">Modify</a>
-
+    <?php while ($db_record = mysqli_fetch_assoc($resultURL)) : ?>
+        <img src="imgs/<?= $db_record['poster'] ?>" alt="">
+        <h2><?= $db_record['title'] ?></h2>
+        <p><?= $db_record['sinopsis'] ?></p>
+        <p>Release date: <?= $db_record['year_of_release'] ?></p>
+        <a href="http://localhost/Project/2-day-Project/modify_movie.php?id= <?php echo $urlID ?>">Modify</a>
     <?php endwhile; ?>
 </body>
 
