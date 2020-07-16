@@ -10,7 +10,9 @@
 
 <body>
     <nav id="order">
-    <button>d</button>
+        <button id="order_date">By date</button>
+        <button id="order_title">By title</button>
+        <button id="order_id">By id</button>
     </nav>
     <section id="movies">
         <article id="mock">
@@ -32,13 +34,43 @@
     <script>
         //getting the array
         $(function() {
-            $.ajax({
-                url: 'datamovies.php',
-                type: 'post',
-                success: function(res) {
-                    createArticles(res);
-                }
-            });
+            /*  $.ajax({
+                 url: 'datamovies.php',
+                 type: 'post',
+                 success: function(res) {
+                     createArticles(res);
+                 }
+             }); */
+            $('#order_date').click(function(e) {
+                $.ajax({
+                    url: 'datamovies.php',
+                    type: 'post',
+                    data: {
+                        order: 'date'
+                    },
+                    success: function(res) {
+                        console.log('success');
+                        createArticles(res);
+                    },
+                    error: function() {
+                        console.log('ERRORRRR');
+                    }
+                })
+            })
+            $('#order_title').click(function(e) {
+                $.ajax({
+                    url: 'datamovies.php',
+                    type: 'post',
+                    data: {
+                        order: 'title'
+                    },
+                    success: function(res) {
+                        console.log('success');
+                        createArticles(res);
+                    },
+                    error: console.log('ERRORRRR')
+                })
+            })
         });
 
         function createArticles(movies) {
@@ -68,7 +100,7 @@
                 // taking out the mock id
                 cloneHTML.id = "";
             });
-            model.remove();
+            model.style.display = 'none';
         }
     </script>
 </body>

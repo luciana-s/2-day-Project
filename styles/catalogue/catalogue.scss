@@ -1,0 +1,49 @@
++ * {
+  box-sizing: border-box;
+}
+*:not(input) {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: midnightblue;
+  color: cornflowerblue;
+  margin: 5rem;
+}
+section {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  article {
+    display: flex;
+    margin: 1rem;
+    align-items: center;
+    img {
+      width: 150px;
+      padding-right: 1rem;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+    .id_and_title {
+      display: flex;
+      .id {
+        padding-right: 0.5rem;
+      }
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      .more {
+        color: cornflowerblue;
+        padding-bottom: 1rem;
+        text-decoration: none;
+      }
+      .modify {
+        color: cornflowerblue;
+        text-decoration: none;
+      }
+    }
+  }
+}
