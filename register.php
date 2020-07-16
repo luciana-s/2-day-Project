@@ -1,4 +1,5 @@
 <?php
+require_once 'nav.php';
 $connection = mysqli_connect('localhost', 'root', '', 'project_movie');
 //initializing variables
 $emailError = $emailError2 = $passwordError = $pwConfirmError = $firstnameError = $lastnameError = '';
