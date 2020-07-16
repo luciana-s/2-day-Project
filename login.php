@@ -85,6 +85,7 @@ if (isset($_POST['submitLog'])) {
                     // echo 'Welcome back user : ' . $_SESSION['sessUser'] . '<br>';
                     // var_dump($_SESSION);
                     // var_dump($_COOKIE);
+                    header('Location: index.php');
                 } else {
                     echo 'Wrong Password';
                 }
