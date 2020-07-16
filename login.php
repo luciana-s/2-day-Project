@@ -86,7 +86,7 @@ if (isset($_POST['submitLog'])) {
                     // var_dump($_SESSION);
                     // var_dump($_COOKIE);
                 } else {
-                    echo 'Wrong Password';
+                    $passwordError = 'Wrong Password';
                 }
             } else {
                 echo 'No username found. Pls register';
