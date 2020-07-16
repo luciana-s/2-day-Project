@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <?php require_once 'nav.php'; ?>
     <nav id="order">
         <button id="order_date">By date</button>
         <button id="order_title">By title</button>
@@ -34,13 +35,13 @@
     <script>
         //getting the array
         $(function() {
-            /*  $.ajax({
-                 url: 'datamovies.php',
-                 type: 'post',
-                 success: function(res) {
-                     createArticles(res);
-                 }
-             }); */
+            $.ajax({
+                url: 'datamovies.php',
+                type: 'post',
+                success: function(res) {
+                    createArticles(res);
+                }
+            });
             $('#order_date').click(function(e) {
                 $.ajax({
                     url: 'datamovies.php',
@@ -50,6 +51,10 @@
                     },
                     success: function(res) {
                         console.log('success');
+                        const model = document.querySelector('#mock');
+                        const container = document.querySelector('div');
+                        container.remove();
+                        model.style.display = '';
                         createArticles(res);
                     },
                     error: function() {
@@ -66,9 +71,35 @@
                     },
                     success: function(res) {
                         console.log('success');
+                        const model = document.querySelector('#mock');
+                        const container = document.querySelector('div');
+                        container.remove();
+                        model.style.display = '';
                         createArticles(res);
                     },
-                    error: console.log('ERRORRRR')
+                    error: function() {
+                        console.log('ERRORRRR');
+                    }
+                })
+            })
+            $('#order_id').click(function(e) {
+                $.ajax({
+                    url: 'datamovies.php',
+                    type: 'post',
+                    data: {
+                        order: 'id'
+                    },
+                    success: function(res) {
+                        console.log('success');
+                        const model = document.querySelector('#mock');
+                        const container = document.querySelector('div');
+                        container.remove();
+                        model.style.display = '';
+                        createArticles(res);
+                    },
+                    error: function() {
+                        console.log('ERRORRRR');
+                    }
                 })
             })
         });
@@ -77,12 +108,14 @@
             //cloning and making new movie displays
             movies = jQuery.parseJSON(movies);
             const section = document.querySelector('#movies');
+            const container = document.createElement('div');
             const model = document.querySelector('#mock');
+            section.append(container);
             console.log(movies);
             movies.forEach(movie => {
                 //- Duplicate a mockup <article> tag to the <section>
                 const cloneHTML = model.cloneNode(true);
-                section.append(cloneHTML)
+                container.append(cloneHTML)
                 //- Adding the cat_id as a class for ordering later
                 cloneHTML.classList.add(movie.cat_id);
                 //- title
@@ -102,6 +135,33 @@
             });
             model.style.display = 'none';
         }
+        /* 
+                function createArticles(movies) {
+                    //cloning and making new movie displays
+                    movies = jQuery.parseJSON(movies);
+                    const section = document.querySelector('#movies');
+                    const container = document.createElement('div').id = 'container';
+                    for (movie of movies) {
+                        // create the article
+                        const articleHTML = document.createElement('article');
+                        container.append(articleHTML);
+                        //adding category as class
+                        articleHTML.classList.add(movie.cat_id);
+                        // create the heading
+                        const headingHTML = document.createElement('h2');
+                        articleHTML.append(headingHTML);
+                        // create the paragraph
+                        const paraHTML = document.createElement('p');
+                        articleHTML.append(paraHTML);
+                        // modify the article
+                        articleHTML.classList.add(articleData.category);
+                        // modify the heading
+                        headingHTML.textContent = articleData.title
+                        // modify the paragraph
+                        paraHTML.textContent = articleData.content;
+                    }
+
+                } */
     </script>
 </body>
 
