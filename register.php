@@ -57,7 +57,8 @@ if ($connection) {
             VALUES ( '$firstname','$lastname', '$email','$hashedPassword','$sessionID')";
             $result = mysqli_query($connection, $query);
             $_SESSION['login'] = true;
-
+            $_SESSION['sessUser'] = $firstname;
+            $_SESSION['email'] = $email;
             //go to home page after registration is succesful
             header('Location: index.php');
         }
