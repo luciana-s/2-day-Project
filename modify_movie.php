@@ -28,11 +28,6 @@ if ($connection) {
         <title>Modify movie</title>
         <!--action="modify_movie_data.php"  -->
         <form method="POST">
-            <!--id-->
-            <!--
-                <label for="id">id : </label>
-                <input type="number" name="id" value="<?php echo $db_record['movie_id']; ?>"><?php echo $idError ?> <br>
-            -->
             <!--title-->
             <label for="title">title : </label>
             <input type="text" name="title" value="<?php echo $db_record['title']; ?>"><br>
@@ -52,15 +47,12 @@ if ($connection) {
             <input type="submit" value="modify" name="submit_modify">
         </form>
     <?php endif; ?>
-    <?php echo $modifySusccess ?>
+
     <!--ADD MOVIE-->
     <?php if (!isset($_GET['id'])) : ?>
         <h2>Add a movie</h2>
         <h3>To modify a movie, choose one from the <a href="http://localhost/Project/2-day-Project/catalogue.php">catalogue</a></h3>
         <form action="" method="POST">
-            <!--id-->
-            <label for="id">id : </label>
-            <input type="number" name="id" value=""><?php echo $idError ?> <br>
             <!--title-->
             <label for="title">title : </label>
             <input type="text" name="title"><br>
@@ -80,7 +72,6 @@ if ($connection) {
             <input type="submit" value="submit" name="submit_add">
         </form>
     <?php endif; ?>
-    <?php echo $addSusccess ?>
 
     <?php
     if ($connection) {
@@ -97,7 +88,15 @@ if ($connection) {
                 `path` = '$path', sinopsis = '$sinopsis'
                 WHERE movie_id = $urlID ";
             $result = mysqli_query($connection, $queryModify);
-            $modifySusccess = 'Modification succesful!';
+            if ($result) {
+                echo 'Modification succesful!';
+                //putting the new values into the inputs
+                $db_record['title'] = $title;
+                $db_record['year_of_release'] = $year_of_release;
+                $db_record['poster'] = $poster;
+                $db_record['path'] = $path;
+                $db_record['sinopsis'] = $sinopsis;
+            }
         }
         //* Adding a movie
         if (isset($_POST['submit_add'])) {
@@ -109,11 +108,11 @@ if ($connection) {
             $sinopsis = $_POST['sinopsis'];
             //query
             $queryAdd = "INSERT INTO `movies`(title , year_of_release , poster ,
-                `path`, sinopsis)'
-                VALUE ('$title','$year_of_release', '$poster', '$path', '$sinopsis')
-                WHERE movie_id = $urlID";
+                `path`, sinopsis)
+                VALUE ('$title','$year_of_release', '$poster', '$path', '$sinopsis')";
             $result = mysqli_query($connection, $queryAdd);
-            $addSusccess = 'Submition succesful!';
+            if ($result)
+                echo 'Submition succesful!';
         }
     }
     ?>
