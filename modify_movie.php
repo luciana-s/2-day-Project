@@ -2,13 +2,13 @@
 require_once 'nav.php';
 $connection = mysqli_connect('localhost', 'root', '', 'project_movie');
 if ($connection) {
+    $idError = $modifySusccess = $addSusccess = '';
     if (isset($_GET['id'])) {
+        //Getting the movie from the id
         $urlID = $_GET['id'];
         $queryURL = "SELECT * FROM movies WHERE movie_id = $urlID";
         $resultURL = mysqli_query($connection, $queryURL);
         $db_record = mysqli_fetch_assoc($resultURL);
-    } else {
-        header('Location: http://localhost/Project/2-day-Project/catalogue.php');
     }
 } else {
     echo 'no connection to the server';
@@ -20,18 +20,103 @@ if ($connection) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify movie</title>
 </head>
 
 <body>
-    <form action="">
-        <input type="number" name="id" value="<?php $db_record['movie_id']; ?>"><br>
-        <input type="text" name="" value="<?php $db_record['title']; ?>"><br>
-        <input type="date" name="" value="<?php $db_record['year_of_release']; ?>"><br>
-        <input type="text" name="" value="<?php $db_record['poster']; ?>"><br>
-        <input type="text" name="" value="<?php $db_record['path']; ?>"><br>
-        <input type="textarea" name="" value="<?php $db_record['sinopsis']; ?>"><br>
-    </form>
+    <!--MODIFY MOVIE-->
+    <?php if (isset($_GET['id'])) : ?>
+        <title>Modify movie</title>
+        <!--action="modify_movie_data.php"  -->
+        <form method="POST">
+            <!--id-->
+            <!--
+                <label for="id">id : </label>
+                <input type="number" name="id" value="<?php echo $db_record['movie_id']; ?>"><?php echo $idError ?> <br>
+            -->
+            <!--title-->
+            <label for="title">title : </label>
+            <input type="text" name="title" value="<?php echo $db_record['title']; ?>"><br>
+            <!--date-->
+            <label for="year_of_release">release date : </label>
+            <input type="date" name="year_of_release" value="<?php echo $db_record['year_of_release']; ?>"><br>
+            <!--poster-->
+            <label for="poster"> path to poster: </label>
+            <input type="text" name="poster" value="<?php echo $db_record['poster']; ?>"><br>
+            <!--path-->
+            <label for="path"> path to movie: </label>
+            <input type="text" name="path" value="<?php echo $db_record['path']; ?>"><br>
+            <!--sinopsis-->
+            <label for="sinopsis"> sinopsis: </label>
+            <textarea name="sinopsis" id="" cols="30" rows="10"><?php echo $db_record['sinopsis']; ?></textarea><br>
+            <!--SUBMIT-->
+            <input type="submit" value="modify" name="submit_modify">
+        </form>
+    <?php endif; ?>
+    <?php echo $modifySusccess ?>
+    <!--ADD MOVIE-->
+    <?php if (!isset($_GET['id'])) : ?>
+        <h2>Add a movie</h2>
+        <h3>To modify a movie, choose one from the <a href="http://localhost/Project/2-day-Project/catalogue.php">catalogue</a></h3>
+        <form action="" method="POST">
+            <!--id-->
+            <label for="id">id : </label>
+            <input type="number" name="id" value=""><?php echo $idError ?> <br>
+            <!--title-->
+            <label for="title">title : </label>
+            <input type="text" name="title"><br>
+            <!--date-->
+            <label for="year_of_release">release date : </label>
+            <input type="date" name="year_of_release"><br>
+            <!--poster-->
+            <label for="poster"> path to poster: </label>
+            <input type="text" name="poster"><br>
+            <!--path-->
+            <label for="path"> path to movie: </label>
+            <input type="text" name="path"><br>
+            <!--sinopsis-->
+            <label for="sinopsis"> sinopsis: </label>
+            <textarea name="sinopsis" id="" cols="30" rows="10"></textarea>
+            <!--SUBMIT-->
+            <input type="submit" value="submit" name="submit_add">
+        </form>
+    <?php endif; ?>
+    <?php echo $addSusccess ?>
+
+    <?php
+    if ($connection) {
+        //* Modifyin a movie
+        if (isset($_REQUEST['submit_modify'])) {
+            //variables
+            $title = $_REQUEST['title'];
+            $year_of_release = $_REQUEST['year_of_release'];
+            $poster = $_REQUEST['poster'];
+            $path = $_REQUEST['path'];
+            $sinopsis = $_REQUEST['sinopsis'];
+            //query
+            $queryModify = "UPDATE `movies` SET title = '$title', year_of_release = '$year_of_release', poster= '$poster',
+                `path` = '$path', sinopsis = '$sinopsis'
+                WHERE movie_id = $urlID ";
+            $result = mysqli_query($connection, $queryModify);
+            $modifySusccess = 'Modification succesful!';
+        }
+        //* Adding a movie
+        if (isset($_POST['submit_add'])) {
+            //variables
+            $title = $_POST['title'];
+            $year_of_release = $_POST['year_of_release'];
+            $poster = $_POST['poster'];
+            $path = $_POST['path'];
+            $sinopsis = $_POST['sinopsis'];
+            //query
+            $queryAdd = "INSERT INTO `movies`(title , year_of_release , poster ,
+                `path`, sinopsis)'
+                VALUE ('$title','$year_of_release', '$poster', '$path', '$sinopsis')
+                WHERE movie_id = $urlID";
+            $result = mysqli_query($connection, $queryAdd);
+            $addSusccess = 'Submition succesful!';
+        }
+    }
+    ?>
 </body>
 
 </html>
