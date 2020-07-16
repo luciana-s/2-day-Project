@@ -1,0 +1,76 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*:not(input) {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: midnightblue;
+  color: cornflowerblue;
+  margin: 5rem;
+}
+
+section {
+  margin: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section article img {
+  width: 150px;
+  padding-right: 1rem;
+}
+
+section article .column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section article .id_and_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+section article .id_and_title .id {
+  padding-right: 0.5rem;
+}
+
+section article .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section article .links .more {
+  padding-bottom: 1rem;
+}
+/*# sourceMappingURL=catalogue.css.map */
