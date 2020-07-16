@@ -30,6 +30,7 @@ session_start();
     require_once('nav.php');
     ?>
 
+    <!-- //? autofill search bar -->
     <form action="" method="post">
         <label for="mysearch">Instant KeyUp Search:</label>
         <input type="text" name="mysearch2" id="mysearch" placeholder="looking..." required>
@@ -42,6 +43,7 @@ session_start();
 
     <?php
 
+    //? manual click ENTER search bar 
     if (isset($_POST['search2'])) {
         // clean the string
         $searchTitle = trim($_POST['mysearch2']);
@@ -69,8 +71,66 @@ session_start();
         mysqli_close($conn);
     }
 
+
+    // ? DISPLAY the latest 5 movies added to the DB
+    // 1. Connect to the DB server
+    // mysqli_connect() returns either FALSE (not connected) or info about the connection.
+    $conn = mysqli_connect('localhost', 'root', '');
+
+    // Choose which database I want to work on
+    mysqli_select_db($conn, 'project_movie');
+
+    if ($conn) {
+        //? getting the movies
+        // PREPARE my query
+        $homequery = "SELECT * 
+            FROM movies
+            ORDER BY movie_id DESC
+            LIMIT 7
+            ";
+        // SEND query to the DB
+        $homeresults = mysqli_query($conn, $homequery);
+        // get all movies queried
+        $homemovies = mysqli_fetch_all($homeresults, MYSQLI_ASSOC);
+
+        //? getting the categories
+        // PREPARE my query
+        $catquery = "SELECT m.cat_id, name, COUNT(title) 
+            FROM movies m
+            INNER JOIN categories c 
+            ON m.cat_id = c.cat_id 
+            GROUP BY m.cat_id
+            ";
+        // SEND query to the DB
+        $catresults = mysqli_query($conn, $catquery);
+        // get all movies queried
+        $homecats = mysqli_fetch_all($catresults, MYSQLI_ASSOC);
+
+        // CLOSE the resource/connection
+        mysqli_close($conn);
+    } else {
+        echo 'Problem w cxn<br>';
+    }
+
     ?>
 
+    <!-- PHP looping in HTML printing -->
+    <!-- ": + endforeach;" equivalent to "{ + }" -->
+
+    <!-- print the home categories -->
+    <?php foreach ($homecats as $homecat) : ?>
+        <span>| <strong><?= $homecat['name'] ?></strong> (<?= $homecat['COUNT(title)'] ?>) |</span>
+    <?php endforeach; ?>
+    <hr>
+
+    <!-- print the home movies -->
+    <?php foreach ($homemovies as $homemovie) : ?>
+        <img src="imgs/<?= $homemovie['poster'] ?>" width="250px" alt="">
+        <p>Title : <strong><?= $homemovie['title'] ?></strong></p>
+        <p>Release : <?= substr($homemovie['year_of_release'], 0, 4) ?></p>
+        <!-- 5. Make the title of each movie clickable - redirect to the related descriptive movie page. -->
+        <p><a href="http://localhost/PHP/PHPday6exDB/movie.php?id=<?= $homemovie['movie_id'] ?>">See More...?</a></p>
+    <?php endforeach; ?>
 
 
     <!-- https://code.jquery.com/ -->
@@ -78,6 +138,7 @@ session_start();
 
     <!-- my own script -->
     <script>
+        //? AJAX call to the PHP that queries the DB
         // same as done.ready: waits for everything to be loaded before executing
         $(function() {
             // $('#mysearch').keyup(function (e) {

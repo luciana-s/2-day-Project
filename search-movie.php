@@ -1,7 +1,7 @@
 <?php
 
 var_dump($_POST);
-
+//? the PHP that queries the DB : 
 // do something only if i get data
 if (!empty($_POST && isset($_POST['mySearch']))) {
     // clean the string

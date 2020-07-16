@@ -41,17 +41,17 @@
             <input type="submit" name="search1" value="find movies">
         </form>
 
-        <?php if ($_SESSION['login']) : ?>
+        <?php if (!isset($_SESSION['login']) || $_SESSION['login'] == false) : ?>
+            <div>
+                <a href="register.php">| Register |</a>
+                <a href="login.php">| Log In |</a>
+            </div>
+        <?php elseif ($_SESSION['login']) : ?>
             <form id="userstat" action="" method="post">
                 <input type="submit" name="logout" value="Log Out"><br>
                 <div>Logged In User: <?= $_SESSION['sessUser'] ?></div>
                 <div>User email: <?= $_SESSION['email'] ?></div>
             </form>
-        <?php else : ?>
-            <div>
-                <a href="register.php">| Register |</a>
-                <a href="login.php">| Log In |</a>
-            </div>
         <?php endif; ?>
     </header>
 
