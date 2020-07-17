@@ -30,18 +30,14 @@ $delMDone = '';
     $conn = mysqli_connect('localhost', 'root', '', 'project_movie');
 
     if ($_SESSION['login']) {
-        echo 'success desc<br>';
 
         if (isset($_GET['playlist_id']) && isset($_GET['movie_id'])) {
-
             // Grabbing what's in the URL
             // then CAST to INTEGER (otherwise POST and GET returns values as strings)
             $playlistid = (int) $_GET['playlist_id'];
             $movieid = (int) $_GET['movie_id'];
 
             if ($playlistid > 0) {
-
-                var_dump($_GET);
 
                 // Get playlist
                 // PREPARE my query
@@ -53,13 +49,11 @@ $delMDone = '';
                 ON c.movie_id = m.movie_id
                 WHERE c.playlist_id = $playlistid AND c.movie_id = $movieid
                 ";
-                var_dump($query);
 
                 // SEND query to the DB
                 $results = mysqli_query($conn, $query);
 
                 $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
-                var_dump($movies);
             } else {
                 echo 'Problem w Description page cxn<br>';
             }

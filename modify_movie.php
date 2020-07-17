@@ -1,5 +1,7 @@
 <?php
 require_once 'nav.php';
+session_start();
+
 $connection = mysqli_connect('localhost', 'root', '', 'project_movie');
 if ($connection) {
     $idError = $modifySusccess = $addSusccess = '';

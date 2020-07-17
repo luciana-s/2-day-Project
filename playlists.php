@@ -108,14 +108,9 @@ if ($_SESSION['login']) {
             <div>Playlist : <strong><?= $userOnePL['name'] ?></strong></div>
 
             <div>Created : <?= $userOnePL['date_of_creation'] ?></div>
-            <input type="submit" name="subModPL" value="Edit Playlist">
-            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">
-                <button value='<?= $userOnePL['playlist_id'] ?>'>Edit playlist (value btn)</button>
+            <a href="http://localhost/Project/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">
+                <input type="button" value="edit this PL">
             </a>
-            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">
-                <input type="button" value="go to edit">
-            </a>
-            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">Test</a>
         </form>
 
         <!-- MODIFYING the category name, not ideal method, displays forms for ALL lists upon click -->

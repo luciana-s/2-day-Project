@@ -141,7 +141,7 @@ $modDone = $delDone = '';
         FROM playlist 
         WHERE playlist_id = $playlistid
         ";
-        var_dump($delPLquery);
+
         // SEND query to the DB
         $delPLresult = mysqli_query($conn, $delPLquery);
 
@@ -182,7 +182,7 @@ $modDone = $delDone = '';
         <?php foreach ($movies as $movie) : ?>
             <form action="" method="post">
                 <div>Movie : <strong><?= $movie['title'] ?></strong></div>
-                <a href="http://localhost/PHP/2-day-Project/delete_movie.php?playlist_id=<?= $userOnePL['playlist_id'] ?>&movie_id=<?= $movie['movie_id'] ?>">
+                <a href="http://localhost/Project/2-day-Project/delete_movie.php?playlist_id=<?= $userOnePL['playlist_id'] ?>&movie_id=<?= $movie['movie_id'] ?>">
                     <input type="button" value="Delete this movie fr PL">
                 </a>
             </form>
