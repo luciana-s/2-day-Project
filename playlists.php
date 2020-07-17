@@ -76,17 +76,18 @@ if ($_SESSION['login']) {
     ?>
 
     <!-- form to add new playlist -->
-    <form action="" method="get">
+    <form action="" method="post">
         <input type="text" name="addPlaylist" placeholder="add a playlist" id="">
         <input type="submit" name="submitPL" value="Add New Playlist">
     </form>
 
     <?php
-    // add new playlist
-    if (isset($_GET['submitPL'])) {
+    // add new playlist - (dont use GET) figure out how to stop sending the same information
+    // figure out how to use AJAX here
+    if (isset($_POST['submitPL'])) {
         echo 'Adding new playlist<br>';
 
-        $titlePL = $_GET['addPlaylist'];
+        $titlePL = $_POST['addPlaylist'];
         $creationTime = date('Y-m-d');
 
         // PREPARE my query
@@ -108,24 +109,30 @@ if ($_SESSION['login']) {
 
             <div>Created : <?= $userOnePL['date_of_creation'] ?></div>
             <input type="submit" name="subModPL" value="Edit Playlist">
-            <button value='<?= $userOnePL['playlist_id'] ?>'>Edit playlist</button>
+            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">
+                <button value='<?= $userOnePL['playlist_id'] ?>'>Edit playlist (value btn)</button>
+            </a>
+            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">
+                <input type="button" value="go to edit">
+            </a>
+            <a href="http://localhost/PHP/2-day-Project/playlist.php?playlist_id=<?= $userOnePL['playlist_id'] ?>">Test</a>
         </form>
 
-        <!-- MODIFYING the category name -->
-        <?php if (isset($_POST['subModifY'])) : ?>
-            <form action="" method="post">
-                <label for="catName">Edit Category Name to : </label>
-                <!-- autofill -->
-                <input type="text" name="catName" id="" value="<?= $_SESSION['category'] ?>">
+        <!-- MODIFYING the category name, not ideal method, displays forms for ALL lists upon click -->
+        <?php if (isset($_POST['subModPL'])) : ?>
+            <!-- <form action="" method="post">
+                <label for="plName">Edit Category Name to : </label>
+                // autofill 
+                <input type="text" name="plName" id="" value="<?= $userOnePL['name'] ?>">
                 <input type="submit" name="subModDone" value="Confirm Changes">
-            </form>
+            </form> -->
         <?php endif; ?>
 
         <p><?= $modDone ?></p>
 
         <?php
         // Click on the edit btn, modify the selected playlist. 
-        if (isset($_POST['subModPL'])) {
+        /* if (isset($_POST['subModPL'])) {
 
             // 1. Connect to the DB server
             $conn = mysqli_connect('localhost', 'root', '');
@@ -136,9 +143,9 @@ if ($_SESSION['login']) {
             //? getting the category details
             // PREPARE my query
             $PLquery = 'SELECT * 
-        FROM playlist p 
-        WHERE name = "' . $userOnePL['name'] . '"
-        ';
+            FROM playlist p 
+            WHERE name = "' . $userOnePL['name'] . '"
+            ';
             var_dump($PLquery);
             // SEND query to the DB
             $PLresult = mysqli_query($conn, $PLquery);
@@ -150,10 +157,10 @@ if ($_SESSION['login']) {
 
             // 3. CLOSE the resource/connection
             mysqli_close($conn);
-        }
+        } */
 
-        // MODIFYING the category name
-        if (isset($_POST['subModDone'])) {
+        // MODIFYING the playlist name
+        /* if (isset($_POST['subModDone'])) {
             // 1. Connect to the DB server
             $conn = mysqli_connect('localhost', 'root', '');
             // 2. Choose which database I want to work on
@@ -162,21 +169,21 @@ if ($_SESSION['login']) {
 
             //? sending the category details
             // PREPARE my query
-            $catEquery = 'UPDATE categories 
-        SET name = "' . $_POST['catName'] . '" 
-        WHERE name = "' . $_SESSION['category'] . '" 
-        ';
-            // var_dump($catEquery);
+            $plEquery = 'UPDATE playlist 
+            SET name = "' . $_POST['plName'] . '" 
+            WHERE name = "' . $_SESSION['category'] . '" 
+            ';
+            var_dump($plEquery);
 
             // SEND query to the DB
-            $catEresult = mysqli_query($conn, $catEquery);
+            $catEresult = mysqli_query($conn, $plEquery);
 
             // success message to print
-            $modDone = $_SESSION['category'] . ' has been changed to : ' . $_POST['catName'];
+            $modDone = $_SESSION['category'] . ' has been changed to : ' . $_POST['plName'];
 
             // 3. CLOSE the resource/connection
             mysqli_close($conn);
-        }
+        } */
 
         ?>
 
