@@ -130,64 +130,6 @@ if ($_SESSION['login']) {
 
         <p><?= $modDone ?></p>
 
-        <?php
-        // Click on the edit btn, modify the selected playlist. 
-        /* if (isset($_POST['subModPL'])) {
-
-            // 1. Connect to the DB server
-            $conn = mysqli_connect('localhost', 'root', '');
-            // 2. Choose which database I want to work on
-            mysqli_select_db($conn, 'project_movie');
-
-
-            //? getting the category details
-            // PREPARE my query
-            $PLquery = 'SELECT * 
-            FROM playlist p 
-            WHERE name = "' . $userOnePL['name'] . '"
-            ';
-            var_dump($PLquery);
-            // SEND query to the DB
-            $PLresult = mysqli_query($conn, $PLquery);
-            // get all movies queried
-            $editcat = mysqli_fetch_assoc($PLresult);
-
-            // save for later use
-            $_SESSION['category'] = $editcat['name'];
-
-            // 3. CLOSE the resource/connection
-            mysqli_close($conn);
-        } */
-
-        // MODIFYING the playlist name
-        /* if (isset($_POST['subModDone'])) {
-            // 1. Connect to the DB server
-            $conn = mysqli_connect('localhost', 'root', '');
-            // 2. Choose which database I want to work on
-            mysqli_select_db($conn, 'project_movie');
-
-
-            //? sending the category details
-            // PREPARE my query
-            $plEquery = 'UPDATE playlist 
-            SET name = "' . $_POST['plName'] . '" 
-            WHERE name = "' . $_SESSION['category'] . '" 
-            ';
-            var_dump($plEquery);
-
-            // SEND query to the DB
-            $catEresult = mysqli_query($conn, $plEquery);
-
-            // success message to print
-            $modDone = $_SESSION['category'] . ' has been changed to : ' . $_POST['plName'];
-
-            // 3. CLOSE the resource/connection
-            mysqli_close($conn);
-        } */
-
-        ?>
-
-
         <!-- PHP looping in HTML printing -->
         <!-- ": + endforeach;" equivalent to "{ + }" -->
         <?php foreach ($playlists as $playlist) : ?>
@@ -198,9 +140,6 @@ if ($_SESSION['login']) {
         <?php endforeach; ?>
         <hr>
     <?php endforeach; ?>
-
-
-
 
 </body>
 
