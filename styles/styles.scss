@@ -72,11 +72,12 @@ header {
   }
   .shownMoviesIndex {
     margin: 0.5rem;
-    background: #730010 0% 0% no-repeat padding-box;
-    border-radius: 18px;
-    opacity: 1;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    background-color: #f2d0a4;
+    color: #730010;
+    border-radius: 10px;
+    a {
+      color: #730010;
+    }
     img {
       width: 300px;
       height: 80%;
@@ -88,5 +89,38 @@ header {
     padding: 0.5rem;
     background-color: #f2d0a4;
     border-radius: 10px;
+  }
+}
+//movie_details
+#movie_details {
+  display: flex;
+  width: 80%;
+  margin: auto;
+
+  img {
+    width: 200px;
+  }
+  #title_sinop {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    img {
+      width: 200px;
+      margin-left: 1rem;
+    }
+  }
+  #cat_modify {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    width: 20%;
+    text-align: center;
+    align-items: center;
+    a {
+      padding: 0.5rem;
+      background-color: #f2d0a4;
+      color: #730010;
+      border-radius: 10px;
+    }
   }
 }

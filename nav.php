@@ -18,7 +18,7 @@
             <nav>
                 <a href="index.php">| Home | </a><br>
                 <a href="catalogue.php">| Movies Catalogue | </a><br>
-                <a href="modify_categorie.php">| Manage Catagories | </a><br>
+                <a href="modify_category.php">| Manage Catagories | </a><br>
                 <a href="modify_movie.php">| Manage Movies | </a><br>
                 <a href="playlists.php">| Playlists | </a><br>
             </nav>

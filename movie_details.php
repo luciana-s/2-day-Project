@@ -26,14 +26,22 @@ if ($connection) {
 </head>
 
 <body>
-    <?php while ($db_record = mysqli_fetch_assoc($resultURL)) : ?>
-        <img src="imgs/<?= $db_record['poster'] ?>" alt="">
-        <h2><?= $db_record['title'] ?></h2>
-        <p>Category : <?= $db_record['category'] ?></p>
-        <p><?= $db_record['sinopsis'] ?></p>
-        <p>Release date: <?= $db_record['year_of_release'] ?></p>
-        <a href="http://localhost/Project/2-day-Project/modify_movie.php?id= <?php echo $urlID ?>">Modify</a>
-    <?php endwhile; ?>
+    <section id="movie_details">
+        <?php if ($db_record = mysqli_fetch_assoc($resultURL)) : ?>
+            <div id="img_date">
+                <img src="imgs/<?= $db_record['poster'] ?>" alt="">
+                <p>Release date: <?= $db_record['year_of_release'] ?></p>
+            </div>
+            <div id="title_sinop">
+                <h2><?= $db_record['title'] ?></h2>
+                <p><?= $db_record['sinopsis'] ?></p>
+                <div id="cat_modify">
+                    <span>Genre: <?= $db_record['category'] ?></span>
+                    <a href="http://localhost/Project/2-day-Project/modify_movie.php?id= <?php echo $urlID ?>">Modify</a>
+                </div>
+            </div>
+        <?php endif; ?>
+    </section>
 </body>
 
 </html>

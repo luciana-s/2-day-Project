@@ -113,11 +113,13 @@ header a:hover {
 
 #indexSection .shownMoviesIndex {
   margin: 0.5rem;
-  background: #730010 0% 0% no-repeat padding-box;
-  border-radius: 18px;
-  opacity: 1;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  background-color: #f2d0a4;
+  color: #730010;
+  border-radius: 10px;
+}
+
+#indexSection .shownMoviesIndex a {
+  color: #730010;
 }
 
 #indexSection .shownMoviesIndex img {
@@ -128,6 +130,61 @@ header a:hover {
 #order button {
   padding: 0.5rem;
   background-color: #f2d0a4;
+  border-radius: 10px;
+}
+
+#movie_details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+#movie_details img {
+  width: 200px;
+}
+
+#movie_details #title_sinop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#movie_details #title_sinop img {
+  width: 200px;
+  margin-left: 1rem;
+}
+
+#movie_details #cat_modify {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 20%;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#movie_details #cat_modify a {
+  padding: 0.5rem;
+  background-color: #f2d0a4;
+  color: #730010;
   border-radius: 10px;
 }
 /*# sourceMappingURL=styles.css.map */
