@@ -87,7 +87,7 @@ if (isset($_POST['submitLog'])) {
                     // var_dump($_COOKIE);
                     header('Location: index.php');
                 } else {
-                    echo 'Wrong Password';
+                    $passwordError = 'Wrong Password';
                 }
             } else {
                 echo 'No username found. Pls register';
@@ -123,7 +123,6 @@ if (isset($_POST['logout'])) {
 <body>
 
     <?php
-
     require_once('nav.php');
     ?>
     <!-- Login page
