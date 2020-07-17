@@ -80,11 +80,11 @@ if ($connection) {
         //* Modifyin a movie
         if (isset($_REQUEST['submit_modify'])) {
             //variables
-            $title = $_REQUEST['title'];
-            $year_of_release = $_REQUEST['year_of_release'];
-            $poster = $_REQUEST['poster'];
-            $path = $_REQUEST['path'];
-            $sinopsis = $_REQUEST['sinopsis'];
+            $title = htmlspecialchars($_REQUEST['title']);
+            $year_of_release = htmlspecialchars($_REQUEST['year_of_release']);
+            $poster = htmlspecialchars($_REQUEST['poster']);
+            $path = htmlspecialchars($_REQUEST['path']);
+            $sinopsis = htmlspecialchars($_REQUEST['sinopsis']);
             //query
             $queryModify = "UPDATE `movies` SET title = '$title', year_of_release = '$year_of_release', poster= '$poster',
                 `path` = '$path', sinopsis = '$sinopsis'
@@ -103,11 +103,11 @@ if ($connection) {
         //* Adding a movie
         if (isset($_POST['submit_add'])) {
             //variables
-            $title = $_POST['title'];
-            $year_of_release = $_POST['year_of_release'];
-            $poster = $_POST['poster'];
-            $path = $_POST['path'];
-            $sinopsis = $_POST['sinopsis'];
+            $title = htmlspecialchars($_REQUEST['title']);
+            $year_of_release = htmlspecialchars($_REQUEST['year_of_release']);
+            $poster = htmlspecialchars($_REQUEST['poster']);
+            $path = htmlspecialchars($_REQUEST['path']);
+            $sinopsis = htmlspecialchars($_REQUEST['sinopsis']);
             //query
             $queryAdd = "INSERT INTO `movies`(title , year_of_release , poster ,
                 `path`, sinopsis)
